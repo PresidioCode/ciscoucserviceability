@@ -22,4 +22,22 @@
 
 ## Examples
 
+```sh
+(ciscoservicability) jlevensailor in ~/Dev/ciscoservicability on master 🌮 python test.py
+
++----------------------------+--------------+---------+---------+
+| Host                       | Service      | Status  | Uptime  |
++----------------------------+--------------+---------+---------+
+| ccm-pub-srvr-01.kdhcd.org  | Cisco Tomcat | Started | 3:31:04 |
+| ccm-sub-srvr-01.kdhcd.org  | Cisco Tomcat | Started | 3:40:13 |
+| ccm-sub-srvr-02.kdhcd.org  | Cisco Tomcat | Started | 3:39:16 |
+| ccm-sub-srvr-03.kdhcd.org  | Cisco Tomcat | Started | 3:36:11 |
+| ccm-sub-srvr-04.kdhcd.org  | Cisco Tomcat | Started | 3:33:07 |
+| ccm-tftp-srvr-01.kdhcd.org | Cisco Tomcat | Started | 3:38:16 |
+| ccm-tftp-srvr-02.kdhcd.org | Cisco Tomcat | Started | 3:35:10 |
+| ccm-tftp-srvr-03.kdhcd.org | Cisco Tomcat | Started | 0:36:54 |
++----------------------------+--------------+---------+---------+
+```
+
+
  - See examples.py for complete code examples for each operation
