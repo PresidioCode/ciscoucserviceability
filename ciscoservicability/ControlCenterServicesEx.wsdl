@@ -1,0 +1,283 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wsdl:definitions targetNamespace="http://schemas.cisco.com/ast/soap" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:tns="http://schemas.cisco.com/ast/soap" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/">
+  <wsdl:types>
+    <schema elementFormDefault="qualified" targetNamespace="http://schemas.cisco.com/ast/soap" xmlns="http://www.w3.org/2001/XMLSchema">
+   
+   <element name="getStaticServiceListExtended">
+    <complexType>
+     <sequence>
+      <element name="ServiceInformationResponse" type="xsd:string"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="getStaticServiceListExtendedResponse">
+    <complexType>
+     <sequence>
+      <element name="getStaticServiceListExtendedReturn" type="tns:StaticServiceListExtended"/>
+     </sequence>
+    </complexType>
+   </element>
+   <complexType name="ServiceSpecificationExtended">
+    <sequence>
+     <element name="ServiceName" nillable="true" type="xsd:string"/>
+     <element name="DependentServices" nillable="true" type="tns:ArrayOfServices"/>
+     <element name="ProductID" nillable="true" type="xsd:string"/>
+     <element name="ServiceType" nillable="true" type="tns:ServiceTypes"/>
+     <element name="RestrictServer" nillable="true" type="tns:actionType"/>
+     <element name="Restrict" nillable="true" type="tns:RestrictType"/>
+     <element name="SetDefault" nillable="true" type="tns:actionType"/>
+     <element name="SequenceNumber" nillable="true" type="xsd:string"/>
+     <element name="ServiceEnum" nillable="true" type="xsd:string"/>
+     <element name="GroupName" nillable="true" type="xsd:string"/>
+     <element name="Deployable" type="xsd:boolean"/>
+    </sequence>
+   </complexType>
+   <complexType name="ArrayOfServices">
+       <sequence>
+        <element maxOccurs="unbounded" minOccurs="0" name="item" nillable="true" type="xsd:string"/>
+       </sequence>
+   </complexType>
+   <complexType name="ArrayOfServiceSpecificationExtended">
+    <sequence>
+     <element maxOccurs="unbounded" minOccurs="0" name="item" type="tns:ServiceSpecificationExtended"/>
+    </sequence>
+   </complexType>
+   <complexType name="StaticServiceListExtended">
+    <sequence>
+     <element name="PrimaryNode" type="xsd:boolean"/>
+     <element name="SecondaryNode" type="xsd:boolean"/>
+     <element name="Services" nillable="true" type="tns:ArrayOfServiceSpecificationExtended"/>
+    </sequence>
+   </complexType>
+   <element name="getFileDirectoryList">
+    <complexType>
+     <sequence>
+      <element name="DirectoryPath" type="xsd:string"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="getFileDirectoryListResponse">
+    <complexType>
+     <sequence>
+      <element name="ListOfFiles" nillable="true" type="tns:ListOfFiles"/>
+     </sequence>
+    </complexType>
+   </element>
+    <complexType name="ListOfFiles">
+        <sequence>
+         <element maxOccurs="unbounded" minOccurs="0" name="File" nillable="true" type="xsd:string"/>
+        </sequence>
+    </complexType>
+   <element name="soapDoServiceDeploymentNoDbUpdate">
+    <complexType>
+     <sequence>
+      <element name="DeploymentServiceRequestEx" type="tns:DeploymentServiceRequestEx"/>
+     </sequence>
+    </complexType>
+   </element>
+   <complexType name="DeploymentServiceRequestEx">
+    <sequence>
+     <element name="ProductId" nillable="true" type="xsd:string"/>
+     <element name="DeployType" nillable="true" type="tns:DeployType"/>
+     <element name="ServiceList" nillable="true" type="tns:ArrayOfServices"/>
+    </sequence>
+   </complexType>
+   <element name="soapDoServiceDeploymentNoDbUpdateResponse">
+    <complexType>
+     <sequence>
+      <element name="soapDoServiceDeploymentNoDbUpdateReturn" type="tns:ServiceInformationResponse"/>
+     </sequence>
+    </complexType>
+   </element>
+   <complexType name="ServiceInformation">
+    <sequence>
+     <element name="ServiceName" nillable="true" type="xsd:string"/>
+     <element name="ServiceStatus" nillable="true" type="tns:ServiceStatus"/>
+     <element name="ReasonCode" nillable="true" type="xsd:integer"/>
+     <element name="ReasonCodeString" nillable="true" type="xsd:string"/>
+     <element name="StartTime" nillable="true" type="xsd:string"/>
+     <element name="UpTime" nillable="true" type="xsd:integer"/>
+    </sequence>
+   </complexType>
+   <complexType name="ArrayOfServiceInformation">
+    <sequence>
+     <element maxOccurs="unbounded" minOccurs="0" name="item" type="tns:ServiceInformation"/>
+    </sequence>
+   </complexType>
+   <complexType name="ServiceInformationResponse">
+    <sequence>
+     <element name="ReturnCode" nillable="true" type="xsd:integer"/>
+     <element name="ReasonCode" nillable="true" type="xsd:integer"/>
+     <element name="ReasonString" nillable="true" type="xsd:string"/>
+     <element name="ServiceInfoList" nillable="true" type="tns:ArrayOfServiceInformation"/>
+    </sequence>
+   </complexType>
+   <element name="soapDoControlServicesEx">
+    <complexType>
+     <sequence>
+      <element name="ControlServiceRequestEx" type="tns:ControlServiceRequestEx"/>
+     </sequence>
+    </complexType>
+   </element>
+   <complexType name="ControlServiceRequestEx">
+    <sequence>
+     <element name="ProductId" nillable="true" type="xsd:string"/>
+     <element name="DependencyType" nillable="true" type="xsd:string"/>
+     <element name="ControlType" nillable="true" type="tns:ControlType"/>
+     <element name="ServiceList" nillable="true" type="tns:ArrayOfServices"/>
+    </sequence>
+   </complexType>
+   <element name="soapDoControlServicesExResponse">
+    <complexType>
+     <sequence>
+      <element name="soapDoControlServicesExReturn" type="tns:ServiceInformationResponse"/>
+     </sequence>
+    </complexType>
+   </element>
+  
+  <simpleType name="ServiceTypes">
+    <restriction base="xsd:string">
+     <enumeration value="Service"/>
+     <enumeration value="Servlet"/>
+    </restriction>
+   </simpleType>
+   <simpleType name="actionType">
+    <restriction base="xsd:string">
+     <enumeration value="yes"/>
+     <enumeration value="no"/>
+    </restriction>
+   </simpleType>
+   <simpleType name="RestrictType">
+    <restriction base="xsd:string">
+     <enumeration value="none"/>
+     <enumeration value="PrimaryNode"/>
+     <enumeration value="DoNotStop"/>
+    </restriction>
+   </simpleType>
+   <simpleType name="DeployType">
+    <restriction base="xsd:string">
+     <enumeration value="Deploy"/>
+     <enumeration value="UnDeploy"/>
+    </restriction>
+   </simpleType>
+   <simpleType name="ServiceStatus">
+    <restriction base="xsd:string">
+     <enumeration value="Started"/>
+     <enumeration value="Stopped"/>
+     <enumeration value="Starting"/>
+     <enumeration value="Stopping"/>
+     <enumeration value="Unknown"/>
+    </restriction>
+   </simpleType>
+   <simpleType name="ControlType">
+    <restriction base="xsd:string">
+     <enumeration value="Start"/>
+     <enumeration value="Stop"/>
+     <enumeration value="Restart"/>
+    </restriction>
+   </simpleType>
+  </schema>
+  </wsdl:types>
+  <wsdl:message name="getStaticServiceListExtendedResponse">
+    <wsdl:part name="parameters" element="tns:getStaticServiceListExtendedResponse">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="soapDoControlServicesExResponse">
+    <wsdl:part name="parameters" element="tns:soapDoControlServicesExResponse">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="soapDoServiceDeploymentNoDbUpdateResponse">
+    <wsdl:part name="parameters" element="tns:soapDoServiceDeploymentNoDbUpdateResponse">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getFileDirectoryListRequest">
+    <wsdl:part name="parameters" element="tns:getFileDirectoryList">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getFileDirectoryListResponse">
+    <wsdl:part name="parameters" element="tns:getFileDirectoryListResponse">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="soapDoControlServicesExRequest">
+    <wsdl:part name="parameters" element="tns:soapDoControlServicesEx">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getStaticServiceListExtendedRequest">
+    <wsdl:part name="parameters" element="tns:getStaticServiceListExtended">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="soapDoServiceDeploymentNoDbUpdateRequest">
+    <wsdl:part name="parameters" element="tns:soapDoServiceDeploymentNoDbUpdate">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:portType name="ControlCenterServicesExPort">
+    <wsdl:operation name="getStaticServiceListExtended">
+      <wsdl:input name="getStaticServiceListExtendedRequest" message="tns:getStaticServiceListExtendedRequest">
+    </wsdl:input>
+      <wsdl:output name="getStaticServiceListExtendedResponse" message="tns:getStaticServiceListExtendedResponse">
+    </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getFileDirectoryList">
+      <wsdl:input name="getFileDirectoryListRequest" message="tns:getFileDirectoryListRequest">
+    </wsdl:input>
+      <wsdl:output name="getFileDirectoryListResponse" message="tns:getFileDirectoryListResponse">
+    </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="soapDoServiceDeploymentNoDbUpdate">
+      <wsdl:input name="soapDoServiceDeploymentNoDbUpdateRequest" message="tns:soapDoServiceDeploymentNoDbUpdateRequest">
+    </wsdl:input>
+      <wsdl:output name="soapDoServiceDeploymentNoDbUpdateResponse" message="tns:soapDoServiceDeploymentNoDbUpdateResponse">
+    </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="soapDoControlServicesEx">
+      <wsdl:input name="soapDoControlServicesExRequest" message="tns:soapDoControlServicesExRequest">
+    </wsdl:input>
+      <wsdl:output name="soapDoControlServicesExResponse" message="tns:soapDoControlServicesExResponse">
+    </wsdl:output>
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="ControlCenterServicesExBinding" type="tns:ControlCenterServicesExPort">
+    <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+    <wsdl:operation name="getStaticServiceListExtended">
+      <soap:operation soapAction="getStaticServiceListExtended"/>
+      <wsdl:input name="getStaticServiceListExtendedRequest">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="getStaticServiceListExtendedResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getFileDirectoryList">
+      <soap:operation soapAction="getFileDirectoryList"/>
+      <wsdl:input name="getFileDirectoryListRequest">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="getFileDirectoryListResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="soapDoServiceDeploymentNoDbUpdate">
+      <soap:operation soapAction="soapDoServiceDeploymentNoDbUpdate"/>
+      <wsdl:input name="soapDoServiceDeploymentNoDbUpdateRequest">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="soapDoServiceDeploymentNoDbUpdateResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="soapDoControlServicesEx">
+      <soap:operation soapAction="soapDoControlServicesEx"/>
+      <wsdl:input name="soapDoControlServicesExRequest">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="soapDoControlServicesExResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="ControlCenterServicesEx">
+    <wsdl:port name="ControlCenterServicesExPort" binding="tns:ControlCenterServicesExBinding">
+      <soap:address location="https://localhost:8443/controlcenterservice2/services/ControlCenterServicesEx"/>
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>
