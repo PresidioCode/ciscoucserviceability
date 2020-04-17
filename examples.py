@@ -184,7 +184,6 @@ def activate(service, node=''):
                 print(req)
 
 def main():
-    #restart(service='Cisco Tomcat', node='ccm-tftp-srvr-03.kdhcd.org')
     getStatus(service='Cisco Tomcat')
 if __name__ == "__main__":
     main()
