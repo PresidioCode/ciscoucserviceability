@@ -40,4 +40,4 @@
 ```
 
 
- - See examples.py for complete code examples for each operation
+For a complete list of examples, see `examples.py`
